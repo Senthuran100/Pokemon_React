@@ -3,12 +3,14 @@ import './App.css';
 import {Switch,Route,Redirect,NavLink} from "react-router-dom";
 import PokemonList from './containers/PokemonList';
 import Pokemon from './containers/Pokemon';
+import pokemon from './Images/pokemon.png';
 
 function App() {
   return (
     <div className="App">
       <nav>
-        <NavLink  to={"/"}>Search</NavLink>
+      <img src={pokemon} alt="Pokemon" />
+       <NavLink  to={"/"}>Home</NavLink>
       </nav>
       <Switch>
         <Route path={"/"} exact component={PokemonList}/>

@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import { GetPokemonList } from "../actions/pokemonActions";
@@ -23,13 +23,13 @@ const PokemonList = (props) => {
             return (
                 <div className={"list-wrapper"}>
                     {pokemonList.data.map(e1 => {
-                return (
-                    <div className={"pokemon-item"}>
-                        <p>{e1.name}</p>
-                        <Link to={`/pokemon/${e1.name}`}>View</Link>
-                    </div>
-                )
-            })}
+                        return (
+                            <div className={"pokemon-item"}>
+                                <p>{e1.name}</p>
+                                <Link to={`/pokemon/${e1.name}`}>View</Link>
+                            </div>
+                        )
+                    })}
                 </div>
             )
         }
@@ -47,17 +47,17 @@ const PokemonList = (props) => {
         <div>
             <div className={"search-wrapper"}>
                 <p>Search :</p>
-                <input type="text" onChange={e=>setSearch(e.target.value)}/>
-                <button onClick={()=>props.history.push(`/pokemon/${search}`)}>Search</button>
+                <input type="text" onChange={e => setSearch(e.target.value)} />
+                <button onClick={() => props.history.push(`/pokemon/${search}`)}>Search</button>
             </div>
             {ShowData()}
             {!_.isEmpty(pokemonList.data) && (
                 <ReactPaginate
-                pageCount={Math.ceil(pokemonList.count/15)}
-                pageRangeDisplayed = {2}
-                marginPagesDisplayed = {1}
-                onPageChange = {(data)=>Fetchdata(data.selected + 1)}
-                containerClassName={"paginate"}
+                    pageCount={Math.ceil(pokemonList.count / 15)}
+                    pageRangeDisplayed={2}
+                    marginPagesDisplayed={1}
+                    onPageChange={(data) => Fetchdata(data.selected + 1)}
+                    containerClassName={"paginate"}
                 />
             )}
         </div>

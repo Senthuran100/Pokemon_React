@@ -9,35 +9,49 @@ const Pokemon = (props) => {
     const dispatch = useDispatch();
     const pokemonState = useSelector(state => state.Pokemon);
     React.useEffect(() => {
-       dispatch(GetPokemon(pokemonName))
+        dispatch(GetPokemon(pokemonName))
     }, []);
 
-    const showData = () =>{
-        if (!_.isEmpty(pokemonState.data[pokemonName])){
-            const pokedata =pokemonState.data[pokemonName]
+    const showData = () => {
+        if (!_.isEmpty(pokemonState.data[pokemonName])) {
+            const pokedata = pokemonState.data[pokemonName]
             return (
-            <div className={'pokemon-wrapper'}>
-                <div className={'item'}>
-                    <h1>Sprites</h1>
-                    <img src={pokedata.sprites.front_default} alt=""/>
-                    <img src={pokedata.sprites.back_default} alt=""/>
-                    <img src={pokedata.sprites.front_shiny} alt=""/>
-                    <img src={pokedata.sprites.back_shiny} alt=""/>
+                <div>
+                    <div className={'pokemon-wrapper'}>
+                        <div className={'item'}>
+                            <h1>Sprites</h1>
+                            <img src={pokedata.sprites.front_default} alt="" />
+                            <img src={pokedata.sprites.back_default} alt="" />
+                            <img src={pokedata.sprites.front_shiny} alt="" />
+                            <img src={pokedata.sprites.back_shiny} alt="" />
+                        </div>
+                        <div className={'item'}>
+                            <h1>Stats</h1>
+                            {pokedata.stats.map(e1 => {
+                                return <p>{e1.stat.name} {e1.base_stat}</p>
+                            })}
+                        </div>
+                        <div className={'item'}>
+                            <h1>Abilities</h1>
+                            {pokedata.abilities.map(e1 => {
+                                return <p>{e1.ability.name}</p>
+                            })}
+                        </div>
+
+                    </div>
+                    <div className={'pokemon-wrapper'}>
+                        <div className={'item'}>
+                            <h1>Base Experience : {pokedata.base_experience}</h1>
+                        </div>
+                        <div className={'item'}>
+                            <h1>Height : {pokedata.height}</h1>
+                        </div>
+                        <div className={'item'}>
+                            <h1>Weight : {pokedata.weight}</h1>
+                        </div>
+                    </div>
                 </div>
-                <div className={'item'}>
-                    <h1>Stats</h1>
-                    {pokedata.stats.map(e1 => {
-                        return <p>{e1.stat.name} {e1.base_stat}</p>
-                    })}
-                </div>
-                <div className={'item'}>
-                    <h1>Abilities</h1>
-                    {pokedata.abilities.map(e1 => {
-                        return <p>{e1.ability.name}</p>
-                    })}
-                </div>
-            </div>
-                )
+            )
         }
         if (pokemonState.loading) {
             return <p>loading.....</p>

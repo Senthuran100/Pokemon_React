@@ -2,6 +2,7 @@
 <h1>POKEMON REACT REDUX</h1>
 <img src="./src/Images/pokemon.png">
 
+Concept of the redux and react is used to display the pokemon data. <a src="https://pokeapi.co/">POKEAPI</a> is used to fetch the data.
 
 ## Available Scripts
 
